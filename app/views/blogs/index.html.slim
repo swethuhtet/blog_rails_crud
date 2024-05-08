@@ -1,0 +1,12 @@
+h1.text-center.mt-3 BLOGS 
+div.d-flex.justify-content-center
+  - @blogs.each do |blog|
+    .card.w-25.me-3
+      .card-body
+        h5.card-title 
+          | #{blog.title}
+        p.card-text
+          | #{blog.body}
+        a
+          = link_to "Read More", blog_path(blog), class: "btn btn-light"
+
