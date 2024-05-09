@@ -1,25 +1,30 @@
-.container.w-50
-  = form_with model: blog do |form|
-  
-    .field.mb-3
-      = form.label :title, "Title", class: "mb-3",style: "font-weight: bold;"
-      br
-      = form.text_field :title, class: "form-control"
-      - blog.errors.full_messages_for(:title).each do |message|
-        div = message
+.container.w-50.my-5
+  .row.justify-content-center
+    .col-lg-8
+      .card.border-white.shadow-lg
+        .card-body
+          = form_with model: blog do |form|
+          
+            .field.mb-3
+              = form.label :title, "Title", class: "mb-3", style: "font-weight: bold;"
+              br
+              = form.text_field :title, class: "form-control"
+              - blog.errors.full_messages_for(:title).each do |message|
+                div = message
 
-    .field.mb-3
-      = form.label :body, "Body", class: "mb-3",style: "font-weight: bold;"
-      br
-      = form.text_field :body, class: "form-control"
-      - blog.errors.full_messages_for(:body).each do |message|
-        div = message
-    
-    .field.mb-3
-      = form.label :status, "Status", class: "mb-3",style: "font-weight: bold;"
-      br
-      = form.text_field :status, class: "form-control"
-      - blog.errors.full_messages_for(:status).each do |message|
-        div = message
-    div
-      = form.submit "Post", class: "btn btn-outline-danger"
+            .field.mb-3
+              = form.label :body, "Body", class: "mb-3", style: "font-weight: bold;"
+              br
+              = form.text_field :body, class: "form-control"
+              - blog.errors.full_messages_for(:body).each do |message|
+                div = message
+            
+            .field.mb-3
+              = form.label :status, "Status", class: "mb-3", style: "font-weight: bold;"
+              br
+              = form.text_field :status, class: "form-control"
+              - blog.errors.full_messages_for(:status).each do |message|
+                div = message
+
+            .field.mb-3.text-center
+              = form.submit "Post", class: "btn btn-secondary"

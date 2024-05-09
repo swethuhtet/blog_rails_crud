@@ -5,8 +5,16 @@ class CommentsController < ApplicationController
     redirect_to blog_path(@blog)
   end
 
-  private 
-  def comment_params
-    params.require(:comment).permit(:body)
+  def destroy
+    @blog = Blog.find(params[:blog_id])
+    @comment = @blog.comments.find(params[:id])
+    @comment.destroy
+    redirect_to blog_path(@blog), status: :see_other
   end
+
+  private
+    def comment_params
+      params.require(:comment).permit(:body).merge(user_id: current_user.id)
+    end
+
 end

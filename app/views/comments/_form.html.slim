@@ -1,21 +1,16 @@
-.container.w-50
-  = form_with model: [@blog,@blog.comments.build] do |form|
-    .field.mb-3 
-      = form.label :commenter
-      br
-      = form.text_field :commenter,class: "form-control"
+.container.w-75.my-5
+.row.justify-content-center
+    .col-lg-8
+      .card.border-white.shadow-lg
+        .card-body
+          = form_with model: [@blog,@blog.comments.build] do |form|
 
-    .field.mb-3 
-      = form.label :body
-      br
-      = form.text_area :body,class: "form-control"
+            .field.mb-3 
+              = form.label :body, "Comment", class: "mb-3",style: "font-weight: bold;"
+              br
+              = form.text_area :body,class: "form-control"
 
-    .field.mb-3 
-      = form.label :status
-      br
-      = form.select :status,Visible::VALID_STATUSES,class: "form-control"
-
-    div
-      = form.submit "Post",class: "btn btn-primary"
+            div
+              = form.submit "Comment",class: "btn btn-secondary"
 
 

@@ -1,9 +1,16 @@
 .card.mb-3
   .card-body
     .d-flex.flex-column
-      h5.card-title John Doe
+      h5.card-title 
+      strong
+        -if comment.user_id
+          = @users.find(comment.user_id).email
+        -else
+          | Anonymous
       p.card-text
-        | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere, lorem ut ornare efficitur, arcu nisi sodales arcu, ac vulputate ligula nisi vitae turpis. Nulla facilisi.
+        = comment.body
       .mt-auto
         p.card-text.text-muted.small
-          small Posted on May 8, 2024
+          small Commented on #{comment.created_at.to_date}
+      p
+        = link_to "Delete", [comment.blog, comment], data:{turbo_method: :delete, turbo_confirm: "Are you sure?"},class: "mt-2 btn btn-danger"

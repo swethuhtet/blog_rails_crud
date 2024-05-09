@@ -1,0 +1,33 @@
+.container.w-50.my-5
+  .row.justify-content-center
+    .col-lg-8
+      .card.border-white.shadow-lg
+        .card
+          .card-body
+            h2 Sign up
+            = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "needs-validation", novalidate: true }) do |f|
+              = render "devise/shared/error_messages", resource: resource
+
+              .form-group.my-3
+                = f.label :email
+                = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", required: true
+              
+              .form-group.my-3
+                = f.label :username
+                = f.text_field :username, autofocus: true, autocomplete: "username", class: "form-control", required: true
+
+              .form-group.my-3
+                = f.label :password
+                / - if @minimum_password_length
+                /   em (#{@minimum_password_length} characters minimum)
+                = f.password_field :password, autocomplete: "new-password", class: "form-control", required: true
+
+              .form-group.my-3
+                = f.label :password_confirmation
+                = f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", required: true
+
+              .actions.my-3
+                = f.submit "Sign up", class: "btn btn-secondary"
+
+            = render "devise/shared/links"
+

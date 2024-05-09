@@ -1,0 +1,25 @@
+.container.w-50.my-5
+  .row.justify-content-center
+    .col-lg-8
+      .card.border-white.shadow-lg
+        .card
+          .card-body
+            h2 Log in
+            = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+              .field.form-group.my-3
+                = f.label :email
+                = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"
+
+              .field.form-group.my-3
+                = f.label :password
+                = f.password_field :password, autocomplete: "current-password", class: "form-control"
+
+              - if devise_mapping.rememberable?
+                .field.form-group.my-3
+                  = f.check_box :remember_me, class: "form-check-input"
+                  = f.label :remember_me, class: "form-check-label"
+
+              .actions.my-3
+                = f.submit "Log in", class: "btn btn-secondary"
+
+            = render "devise/shared/links"

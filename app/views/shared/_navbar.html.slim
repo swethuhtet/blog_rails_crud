@@ -1,20 +1,24 @@
 nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
   .container-fluid.ms-3
     .collapse.navbar-collapse#navbarSupportedContent.d-flex.justify-content-between
-      ul.navbar-nav.mr-auto
+      ul.navbar-nav.mr-auto.mb-2.mb-lg-0
         li.nav-item.active
           = link_to "/", class: "nav-link" do
             | Home
             span.sr-only (current)
-        li.nav-item
+        - if user_signed_in?    
+          li.nav-item
           = link_to "New Blog", new_blog_path, class: "nav-link" 
-        li.nav-item
-          = link_to "#", class: "nav-link disabled" do
-            | New Blog
-      div          
-        span.navbar-text
-        = link_to "#", class: 'btn btn-outline-danger me-2' do 
-          | Create user
-        span.navbar-text
-        = link_to "#", class: 'btn btn-danger me-3' do 
-          | Sign up
+    - if user_signed_in?
+      span.navbar-text.me-3
+        = current_user.email
+      span.navbar-text
+        = button_to "Sign out",destroy_user_session_path,method: :delete, class: 'btn btn-danger'
+    - else
+      span.navbar-text
+        = link_to "Create User",new_user_registration_path, class: 'btn btn-outline-danger me-2' 
+      span.navbar-text
+        = link_to "Sign in",new_user_session_path, class: 'btn btn-danger me-3'              
+
+        
+          

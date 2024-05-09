@@ -1,12 +1,20 @@
-h1.text-center.mt-3 BLOGS 
-div.d-flex.justify-content-center
-  - @blogs.each do |blog|
-    .card.w-25.me-3
-      .card-body
-        h5.card-title 
-          | #{blog.title}
-        p.card-text
-          | #{blog.body}
-        a
-          = link_to "Read More", blog_path(blog), class: "btn btn-light"
+- if user_signed_in?
+  h1.text-center.my-3
+    | BLOGS 
+
+  div.d-flex.justify-content-center.flex-wrap
+    - @blogs.each do |blog|
+      .card.w-25.me-3.mb-4
+        .card-body
+          h5.card-title 
+            = blog.title
+          - if blog.user_id
+            p.card-text.text-muted.small
+              = @users.find(blog.user_id).email
+          p.card-text
+            = blog.body
+          a
+            = link_to "Read More", blog_path(blog), class: "btn btn-secondary"
+-else
+  h4.text-center.mt-5 Hello, welcome!! Log in or Create an account to see blogs.
 
